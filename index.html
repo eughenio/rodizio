@@ -45,6 +45,11 @@
 
       var map = new google.maps.Map(mapCanvas, mapOptions);
 
+      var ctaLayer = new google.maps.KmlLayer({
+        url: 'rodizio.kmz'
+      });
+      ctaLayer.setMap(map);
+
       // Try HTML5 geolocation
       if(navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
