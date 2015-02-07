@@ -30,6 +30,7 @@
       $('#map_canvas').css('height',$(window).height()-50);
 
       var markers = [];
+      var estaAqui = 'Você está aqui!';
 
       var mapCanvas = document.getElementById('map_canvas');
       var mapOptions = {
@@ -41,24 +42,30 @@
 
       var map = new google.maps.Map(mapCanvas, mapOptions);
 
-      var ctaLayer = new google.maps.KmlLayer({
-        url: 'rodizio.kmz'
-      });
-      ctaLayer.setMap(map);
-
       // Try HTML5 geolocation
       if(navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
           var pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 
-          var marker = {
+          var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: estaAqui
+          });
+
+          var option = {
             map:map,
             position: pos,
-            content: 'Você está aqui!'
+            content: estaAqui
           };
 
           var infowindow = new google.maps.InfoWindow(marker);
           map.setCenter(marker.position);
+
+          var ctaLayer = new google.maps.KmlLayer({
+            url: 'rodizio.kmz'
+          });
+          ctaLayer.setMap(map);
 
         }, function() {
           handleNoGeolocation(true);
