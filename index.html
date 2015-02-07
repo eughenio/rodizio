@@ -53,17 +53,8 @@
             title: estaAqui
           });
 
-          var option = {
-            map:map,
-            position: pos,
-            content: estaAqui
-          };
-
-          var infowindow = new google.maps.InfoWindow(marker);
-          map.setCenter(marker.position);
-
           var ctaLayer = new google.maps.KmlLayer({
-            url: 'rodizio.kmz'
+            url: 'http://rodizio.elcdigital.com.br/rodizio.kmz'
           });
           ctaLayer.setMap(map);
 
