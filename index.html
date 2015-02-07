@@ -30,10 +30,6 @@
       $('#map_canvas').css('height',$(window).height()-50);
 
       var markers = [];
-      var b=0;
-
-      var $lnt = '';
-      var $lng = '';
 
       var mapCanvas = document.getElementById('map_canvas');
       var mapOptions = {
@@ -55,17 +51,14 @@
         navigator.geolocation.getCurrentPosition(function(position) {
           var pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 
-          map.setCenter(pos);
-
-          $lnt = position.coords.latitude;
-          $lng = position.coords.longitude;
-
-          var marker = new google.maps.Marker({
+          var marker = {
             map:map,
-            animation: google.maps.Animation.DROP,
             position: pos,
-            title: 'Você está aqui!'
-          });
+            content: 'Você está aqui!'
+          };
+
+          var infowindow = new google.maps.InfoWindow(marker);
+          map.setCenter(marker.position);
 
         }, function() {
           handleNoGeolocation(true);
