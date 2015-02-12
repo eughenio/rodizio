@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
   <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG7ywDgXOGA545Xbj4klk7tSTmYpIAys4&sensor=true&language=br"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG7ywDgXOGA545Xbj4klk7tSTmYpIAys4&libraries=geometry&sensor=true&language=br"></script>
   <style>
     #map_canvas{
       margin:50px auto 0;
@@ -167,6 +167,16 @@
           });
 
           rodizioArea.setMap(map);
+
+          var rodizioAreaCheck = new google.maps.Polygon({
+            paths: rodizioCoords
+          });
+
+          if (google.maps.geometry.poly.containsLocation(pos, rodizioAreaCheck)) {
+            console.log('dentro');
+          } else {
+            console.log('fora');
+          }
 
         }, function() {
           handleNoGeolocation(true);
