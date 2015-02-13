@@ -56,9 +56,8 @@
 
   <script>
     $(function(){
-      $('#map_canvas').css('height',$(window).height()-80);
 
-      var estaAqui = 'Você está aqui!';
+      $('#map_canvas').css('height',$(window).height()-80);
 
       var mapCanvas = document.getElementById('map_canvas');
 
@@ -73,6 +72,18 @@
       // Try HTML5 geolocation
       if(navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
+
+          var d = new Date();
+          var colorRodizioOn = "#FF0000";
+          var colorRodizioOff = "#66CC00";
+          var rodizioColor;
+          var estaAqui = 'Você está aqui!';
+
+          if((d.getHours() >= 7 && d.getHours() <= 10) && (d.getHours() >= 17 && d.getHours() <= 20)){
+            rodizioColor = colorRodizioOn;
+          }else{
+            rodizioColor = colorRodizioOff;
+          }
 
           var pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 
@@ -159,20 +170,16 @@
 
           var rodizioArea = new google.maps.Polygon({
             paths: rodizioCoords,
-            strokeColor: '#FF0000',
+            strokeColor: rodizioColor,
             strokeOpacity: 0.8,
             strokeWeight: 2,
-            fillColor: '#FF0000',
+            fillColor: rodizioColor,
             fillOpacity: 0.35
           });
 
           rodizioArea.setMap(map);
 
-          var rodizioAreaCheck = new google.maps.Polygon({
-            paths: rodizioCoords
-          });
-
-          if (google.maps.geometry.poly.containsLocation(pos, rodizioAreaCheck)) {
+          if (google.maps.geometry.poly.containsLocation(pos, rodizioArea)) {
             console.log('dentro');
           } else {
             console.log('fora');
