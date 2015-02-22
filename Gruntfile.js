@@ -46,6 +46,17 @@ module.exports = function(grunt) {
         dest: 'app/javascript/jquery.min.map',
       },
     },
+    htmlmin: {
+      dist: {
+        options: {
+          removeComments: true,
+          collapseWhitespace: true
+        },
+        files: {
+          'app/index.html': 'index.html',
+        }
+      }
+    },
     watch: {
       css: {
         files: ['css/master.css'],
@@ -59,11 +70,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
   grunt.registerTask('mincss', ["cssmin"]);
   grunt.registerTask('concatcss', ["concat:css"]);
   grunt.registerTask('concatjs', ["concat:js", "uglify", "copy"]);
   grunt.registerTask('concatmincss', ["cssmin", "concat:css"]);
   grunt.registerTask('uglifycore', ["uglify"]);
-  grunt.registerTask('default', ["cssmin", "concat", "uglify", "copy"]);
+  grunt.registerTask('default', ["cssmin", "concat", "uglify", "copy", "htmlmin"]);
 };
