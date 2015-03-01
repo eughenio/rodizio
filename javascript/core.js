@@ -83,18 +83,6 @@ $(function(){
     self.colorRodizioOn = "#FF0000";
     self.colorRodizioOff = "#66CC00";
     self.estaAqui = 'Você está aqui!';
-    self.geoLocation;
-    self.myPosition = function(position){
-      geoLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-
-      var marker = new google.maps.Marker({
-        position: this.geoLocation,
-        map: self.map,
-        title: self.estaAqui
-      });
-
-      self.map.setCenter(this.geoLocation);
-    };
     self.handleNoGeolocation = function(errorFlag) {
       if (errorFlag) {
         var content = 'Erro: A Geolocalização falhou.';
@@ -122,6 +110,20 @@ $(function(){
 
   Rodizio.prototype.fixCss = function(){
     $('#map_canvas').css('height',$(window).height()-80);
+  };
+
+  Rodizio.prototype.myPosition = function(position){
+    return geoloc = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+  };
+
+  Rodizio.prototype.addMarker = function(geoLocation){
+    var marker = new google.maps.Marker({
+      position: geoLocation,
+      map: self.map,
+      title: self.estaAqui
+    });
+
+    this.map.setCenter(geoLocation);
   };
 
   Rodizio.prototype.getPosition = function(){
@@ -157,7 +159,9 @@ $(function(){
   rodizioObj = new Rodizio();
 
   rodizioObj.fixCss();
-  rodizioObj.getPosition();
+  local = rodizioObj.getPosition();
+  console.log(local);
+  rodizioObj.addMarker(local);
   colorRodizio = rodizioObj.colorArea();
   rodizioObj.showArea(colorRodizio);
 });
