@@ -83,22 +83,17 @@ $(function(){
     self.colorRodizioOn = "#FF0000";
     self.colorRodizioOff = "#66CC00";
     self.estaAqui = 'Você está aqui!';
-    self.position = function(position){
-      var pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+    self.geoLocation;
+    self.myPosition = function(position){
+      geoLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 
       var marker = new google.maps.Marker({
-        position: pos,
+        position: this.geoLocation,
         map: self.map,
         title: self.estaAqui
       });
 
-      self.map.setCenter(pos);
-
-      if (google.maps.geometry.poly.containsLocation(pos, self.rodizioCoords)) {
-        console.log('dentro');
-      } else {
-        console.log('fora');
-      }
+      self.map.setCenter(this.geoLocation);
     };
     self.handleNoGeolocation = function(errorFlag) {
       if (errorFlag) {
@@ -115,7 +110,14 @@ $(function(){
 
       var infowindow = new google.maps.InfoWindow(options);
       self.map.setCenter(options.position);
-    }
+    };
+    self.contains = function(){
+      if (google.maps.geometry.poly.containsLocation(self.geoLocation, self.rodizioCoords)) {
+        console.log('dentro');
+      } else {
+        console.log('fora');
+      }
+    };
   };
 
   Rodizio.prototype.fixCss = function(){
@@ -124,7 +126,7 @@ $(function(){
 
   Rodizio.prototype.getPosition = function(){
     if(navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.position, this.handleNoGeolocation);
+      navigator.geolocation.getCurrentPosition(this.myPosition, this.handleNoGeolocation);
     }else{
       this.handleNoGeolocation(false)
     }
