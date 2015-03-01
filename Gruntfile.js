@@ -61,6 +61,13 @@ module.exports = function(grunt) {
       css: {
         files: ['css/master.css'],
         tasks: ['concatmincss']
+      },
+      scripts: {
+        files: ['javascript/**/*.js'],
+        tasks: ['concatjs'],
+        options: {
+          spawn: false,
+        },
       }
     }
   });
