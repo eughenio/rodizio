@@ -29,7 +29,6 @@ $(function(){
       var rodEndTarde = 20;
 
       if((d.getHours() >= rodStartManha && d.getHours() < rodEndManha) || (d.getHours() >= rodStartTarde && d.getHours() < rodEndTarde)){
-
         $('#rodizio-notification').text('Estamos em horario de rodizio!');
       } else {
         rodizioColor = colorRodizioOff;
