@@ -22,10 +22,39 @@ $(function(){
       var rodizioColor;
       var estaAqui = 'Você está aqui!';
 
-      if((d.getHours() >= 7 && d.getHours() <= 10) || (d.getHours() >= 17 && d.getHours() <= 20)){
+      // Horarios de começo/fim do rodizio
+      var rodStartManha = 7;
+      var rodEndManha = 10;
+      var rodStartTarde = 17;
+      var rodEndTarde = 20;
+
+      if((d.getHours() >= rodStartManha && d.getHours() <= rodEndManha) || (d.getHours() >= rodStartTarde && d.getHours() <= rodEndTarde)){
         rodizioColor = colorRodizioOn;
-      }else{
+
+        $('#rodizio-notification').text('Estamos em horario de rodizio!');
+      } else {
         rodizioColor = colorRodizioOff;
+
+        var rodTime = new Date();
+        if (d.getHours() >= rodStartManha && d.getHours <= rodEndManha) {
+          rodTime.setHours(rodEndManha - 1);
+          rodTime.setMinutes(59);
+          rodTime.setSeconds(59);
+        } else {
+          rodTime.setHours(rodEndTarde - 1);
+          rodTime.setMinutes(59);
+          rodTime.setSeconds(59);
+        }
+
+        setInterval(function() {
+          var now = new Date(),
+              diffHours = Math.abs(now.getHours() - rodTime.getHours()),
+              diffMinutes = Math.abs(now.getMinutes() - rodTime.getHours()),
+              diffSeconds = Math.abs(now.getSeconds() - rodTime.getSeconds()),
+              timeDiff = diffHours + ':' + diffMinutes + ':' + diffSeconds;
+
+          $('#rodizio-notification').text('Pode andar tranquilamente, o proximo rodizio começa em: ' + timeDiff);
+        }, 1000);
       }
 
       var pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
@@ -152,5 +181,4 @@ $(function(){
     var infowindow = new google.maps.InfoWindow(options);
     map.setCenter(options.position);
   }
-
 });
