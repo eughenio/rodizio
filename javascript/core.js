@@ -22,7 +22,7 @@ $(function(){
       var rodizioColor;
       var estaAqui = 'Você está aqui!';
 
-      if((d.getHours() >= 7 && d.getHours() <= 10) || (d.getHours() >= 17 && d.getHours() <= 20)){
+      if((d.getHours() >= 7 && d.getHours() < 10) || (d.getHours() >= 17 && d.getHours() < 20)){
         rodizioColor = colorRodizioOn;
       }else{
         rodizioColor = colorRodizioOff;
