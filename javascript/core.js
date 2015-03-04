@@ -22,7 +22,6 @@ $(function(){
       var rodizioColor;
       var estaAqui = 'Você está aqui!';
 
-<<<<<<< HEAD
       // Horarios de começo/fim do rodizio
       var rodStartManha = 7;
       var rodEndManha = 10;
@@ -37,23 +36,22 @@ $(function(){
 
         var rodTime = new Date();
         if (d.getHours() >= rodStartManha && d.getHours <= rodEndManha) {
-          rodTime.setHours(rodEndManha - 1);
-          rodTime.setMinutes(59);
-          rodTime.setSeconds(59);
+          rodTime.setHours(rodStartManha - 1);
         } else {
-          rodTime.setHours(rodEndTarde - 1);
-          rodTime.setMinutes(59);
-          rodTime.setSeconds(59);
+          rodTime.setHours(rodStartTarde - 1);
         }
+
+        rodTime.setMinutes(59);
+        rodTime.setSeconds(59);
 
         setInterval(function() {
           var now = new Date(),
-              diffHours = Math.abs(now.getHours() - rodTime.getHours()),
-              diffMinutes = Math.abs(now.getMinutes() - rodTime.getHours()),
-              diffSeconds = Math.abs(now.getSeconds() - rodTime.getSeconds()),
-              timeDiff = diffHours + ':' + diffMinutes + ':' + diffSeconds;
+              h = ('0' + Math.abs(rodTime.getHours() - now.getHours())).slice(-2),
+              m = ('0' + Math.abs(rodTime.getMinutes() - now.getMinutes())).slice(-2),
+              s = ('0' + Math.abs(rodTime.getSeconds() - now.getSeconds())).slice(-2),
+              timeDiff = h + ':' + m + ':' + s;
 
-          $('#rodizio-notification').text('Pode andar tranquilamente, o proximo rodizio começa em: ' + timeDiff);
+          $('#rodizio-notification').text('O proximo rodizio começa em: ' + timeDiff);
         }, 1000);
       }
 
