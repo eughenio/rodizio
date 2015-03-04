@@ -22,14 +22,14 @@ $(function(){
       var rodizioColor;
       var estaAqui = 'Você está aqui!';
 
+<<<<<<< HEAD
       // Horarios de começo/fim do rodizio
       var rodStartManha = 7;
       var rodEndManha = 10;
       var rodStartTarde = 17;
       var rodEndTarde = 20;
 
-      if((d.getHours() >= rodStartManha && d.getHours() <= rodEndManha) || (d.getHours() >= rodStartTarde && d.getHours() <= rodEndTarde)){
-        rodizioColor = colorRodizioOn;
+      if((d.getHours() >= rodStartManha && d.getHours() < rodEndManha) || (d.getHours() >= rodStartTarde && d.getHours() < rodEndTarde)){
 
         $('#rodizio-notification').text('Estamos em horario de rodizio!');
       } else {
