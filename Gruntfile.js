@@ -59,8 +59,8 @@ module.exports = function(grunt) {
     },
     watch: {
       css: {
-        files: ['css/master.css'],
-        tasks: ['concatmincss']
+        files: ['css/master.css', 'index.html', 'javascript/core.js'],
+        tasks: ['concatmincss', 'htmlmin', 'uglify']
       }
     }
   });
@@ -77,5 +77,5 @@ module.exports = function(grunt) {
   grunt.registerTask('concatjs', ["concat:js", "uglify", "copy"]);
   grunt.registerTask('concatmincss', ["cssmin", "concat:css"]);
   grunt.registerTask('uglifycore', ["uglify"]);
-  grunt.registerTask('default', ["cssmin", "concat", "uglify", "copy", "htmlmin"]);
+  grunt.registerTask('default', ["cssmin", "concat", "uglify", "copy", "htmlmin", "watch"]);
 };

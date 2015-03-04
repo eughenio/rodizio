@@ -22,10 +22,36 @@ $(function(){
       var rodizioColor;
       var estaAqui = 'Você está aqui!';
 
-      if((d.getHours() >= 7 && d.getHours() < 10) || (d.getHours() >= 17 && d.getHours() < 20)){
-        rodizioColor = colorRodizioOn;
-      }else{
+      // Horarios de começo/fim do rodizio
+      var rodStartManha = 7;
+      var rodEndManha = 10;
+      var rodStartTarde = 17;
+      var rodEndTarde = 20;
+
+      if((d.getHours() >= rodStartManha && d.getHours() < rodEndManha) || (d.getHours() >= rodStartTarde && d.getHours() < rodEndTarde)){
+        $('#rodizio-notification').text('Estamos em horario de rodizio!');
+      } else {
         rodizioColor = colorRodizioOff;
+
+        var rodTime = new Date();
+        if (d.getHours() >= rodStartManha && d.getHours <= rodEndManha) {
+          rodTime.setHours(rodStartManha - 1);
+        } else {
+          rodTime.setHours(rodStartTarde - 1);
+        }
+
+        rodTime.setMinutes(59);
+        rodTime.setSeconds(59);
+
+        setInterval(function() {
+          var now = new Date(),
+              h = ('0' + Math.abs(rodTime.getHours() - now.getHours())).slice(-2),
+              m = ('0' + Math.abs(rodTime.getMinutes() - now.getMinutes())).slice(-2),
+              s = ('0' + Math.abs(rodTime.getSeconds() - now.getSeconds())).slice(-2),
+              timeDiff = h + ':' + m + ':' + s;
+
+          $('#rodizio-notification').text('O proximo rodizio começa em: ' + timeDiff);
+        }, 1000);
       }
 
       var pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
@@ -152,5 +178,4 @@ $(function(){
     var infowindow = new google.maps.InfoWindow(options);
     map.setCenter(options.position);
   }
-
 });
