@@ -105,13 +105,13 @@ $(function(){
       var d = new Date();
       var rodizioColor = "";
 
-      /*if((d.getDay() = 6) || (d.getDay() = 0)){
+      if((d.getDay() == 0) || (d.getDay() == 6)){
 
         rodizioColor = this.corRodizioOff;
-        $('.mensagem').removeClass("alert-danger").addClass("alert-success");
-        $('.mensagem .contador').val('Hoje o Rodízio está liberado');
+        $('.mensagem').removeClass("alert-success").addClass("alert-info");
+        $('.mensagem .contador').text('Hoje o Rodízio está liberado');
 
-      } else*/ if((d.getHours() >= this.rodStartManha && d.getHours() < this.rodEndManha) || (d.getHours() >= this.rodStartTarde && d.getHours() < this.rodEndTarde)){
+      } else if((d.getHours() >= this.rodStartManha && d.getHours() < this.rodEndManha) || (d.getHours() >= this.rodStartTarde && d.getHours() < this.rodEndTarde)){
 
         rodizioColor = this.corRodizioOn;
         $('.mensagem').removeClass("alert-success").addClass("alert-danger")
