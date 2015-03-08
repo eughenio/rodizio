@@ -89,7 +89,6 @@ $(function(){
 
     this.fixCss = fixCss;
     this.corArea = corArea;
-    this.showArea = showArea;
     this.getPosition = getPosition;
 
     this.rodStartManha = 7;
