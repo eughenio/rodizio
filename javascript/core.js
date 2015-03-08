@@ -98,22 +98,27 @@ $(function(){
 
 
     function fixCss(){
-      $('#map_canvas').css('height',$(window).height()-132);
+      $('#map_canvas').css('height',$(window).height()-80);
     };
 
     function corArea(){
       var d = new Date();
       var rodizioColor = "";
 
-      if(d.getDay() = 6 || d.getDay() = 0){
+      /*if((d.getDay() = 6) || (d.getDay() = 0)){
+
         rodizioColor = this.corRodizioOff;
         $('.mensagem').removeClass("alert-danger").addClass("alert-success");
-        $('.mensagem .contador').text('Hoje o Rodízio está liberado');
-      }else if((d.getHours() >= this.rodStartManha && d.getHours() < this.rodEndManha) || (d.getHours() >= this.rodStartTarde && d.getHours() < this.rodEndTarde)){
+        $('.mensagem .contador').val('Hoje o Rodízio está liberado');
+
+      } else*/ if((d.getHours() >= this.rodStartManha && d.getHours() < this.rodEndManha) || (d.getHours() >= this.rodStartTarde && d.getHours() < this.rodEndTarde)){
+
         rodizioColor = this.corRodizioOn;
         $('.mensagem').removeClass("alert-success").addClass("alert-danger")
         $('.mensagem .contador').text('Estamos em horario de rodizio!');
+
       } else {
+
         rodizioColor = this.corRodizioOff;
 
         var rodTime = new Date();
@@ -136,6 +141,7 @@ $(function(){
               $('.mensagem').removeClass("alert-danger").addClass("alert-success");
               $('.mensagem .contador').text('O proximo rodizio começa em: ' + timeDiff);
         }, 1000);
+
       }
 
       showArea(rodizioColor);
