@@ -92,18 +92,51 @@ $(function(){
     this.showArea = showArea;
     this.getPosition = getPosition;
 
+    this.rodStartManha = 7;
+    this.rodEndManha = 10;
+    this.rodStartTarde = 17;
+    this.rodEndTarde = 20;
+
 
     function fixCss(){
-      $('#map_canvas').css('height',$(window).height()-80);
+      $('#map_canvas').css('height',$(window).height()-132);
     };
 
     function corArea(){
       var d = new Date();
-      if((d.getHours() >= 7 && d.getHours() <= 10) || (d.getHours() >= 17 && d.getHours() <= 20)){
-        return self.corRodizioOn;
-      }else{
-        return self.corRodizioOff;
+      var rodizioColor = "";
+
+      if((d.getHours() >= this.rodStartManha && d.getHours() < this.rodEndManha) || (d.getHours() >= this.rodStartTarde && d.getHours() < this.rodEndTarde)){
+        rodizioColor = this.corRodizioOn;
+        $('.mensagem').removeClass("alert-success").addClass("alert-danger")
+        $('.mensagem .contador').text('Estamos em horario de rodizio!');
+      } else {
+        rodizioColor = this.corRodizioOff;
+
+        var rodTime = new Date();
+        if ((d.getHours() >= 0 && d.getHours() < this.rodStartManha) || (d.getHours() >= this.rodStartManha && d.getHours() < this.rodEndManha)) {
+          rodTime.setHours(this.rodEndManha - 1);
+        } else {
+          rodTime.setHours(this.rodStartTarde - 1);
+        }
+
+        rodTime.setMinutes(59);
+        rodTime.setSeconds(59);
+
+        setInterval(function() {
+          var now = new Date(),
+              h = ('0' + Math.abs(rodTime.getHours() - now.getHours())).slice(-2),
+              m = ('0' + Math.abs(rodTime.getMinutes() - now.getMinutes())).slice(-2),
+              s = ('0' + Math.abs(rodTime.getSeconds() - now.getSeconds())).slice(-2),
+              timeDiff = h + ':' + m + ':' + s;
+
+              $('.mensagem').removeClass("alert-danger").addClass("alert-success");
+              $('.mensagem .contador').text('O proximo rodizio começa em: ' + timeDiff);
+        }, 1000);
       }
+
+      showArea(rodizioColor);
+
     };
 
     function showArea(colorRodizio){
@@ -174,10 +207,9 @@ $(function(){
   }
 
   rodizioObj = new Rodizio();
-  rodizioObj.getPosition();
   rodizioObj.fixCss();
-  corRodizio = rodizioObj.corArea();
-  rodizioObj.showArea(corRodizio);
+  rodizioObj.corArea();
+  rodizioObj.getPosition();
 
 });
 

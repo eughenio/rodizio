@@ -64,10 +64,14 @@ module.exports = function(grunt) {
       },
       scripts: {
         files: ['javascript/**/*.js'],
-        tasks: ['concatjs'],
+        tasks: ['concatjs', 'uglify'],
         options: {
           spawn: false,
-        },
+        }
+      },
+      html: {
+        files: ['index.html'],
+        tasks: ['htmlmin']
       }
     }
   });
@@ -84,5 +88,5 @@ module.exports = function(grunt) {
   grunt.registerTask('concatjs', ["concat:js", "uglify", "copy"]);
   grunt.registerTask('concatmincss', ["cssmin", "concat:css"]);
   grunt.registerTask('uglifycore', ["uglify"]);
-  grunt.registerTask('default', ["cssmin", "concat", "uglify", "copy", "htmlmin"]);
+  grunt.registerTask('default', ["cssmin", "concat", "uglify", "copy", "htmlmin", "watch"]);
 };
