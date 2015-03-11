@@ -123,7 +123,7 @@ $(function(){
 
         var rodTime = new Date();
         if ((d.getHours() >= 0 && d.getHours() < this.rodStartManha) || (d.getHours() >= this.rodStartManha && d.getHours() < this.rodEndManha)) {
-          rodTime.setHours(this.rodEndManha - 1);
+          rodTime.setHours(this.rodStartManha - 1);
         } else {
           rodTime.setHours(this.rodStartTarde - 1);
         }
