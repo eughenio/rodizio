@@ -109,13 +109,13 @@ $(function(){
       if((d.getDay() == 0) || (d.getDay() == 6)){
 
         rodizioColor = this.corRodizioOff;
-        $('.alerta .alert').removeClass("alert-success-alt").addClass("alert-info-alt");
+        $('.alerta .alert').addClass("alert-info-alt");
         $('.alerta .contador').text('Hoje o Rodízio está liberado');
 
       } else if((d.getHours() >= this.rodStartManha && d.getHours() < this.rodEndManha) || (d.getHours() >= this.rodStartTarde && d.getHours() < this.rodEndTarde)){
 
         rodizioColor = this.corRodizioOn;
-        $('.alerta .alert').removeClass("alert-success-alt").addClass("alert-danger-alt")
+        $('.alerta .alert').addClass("alert-danger-alt")
         $('.alerta .contador').text('Estamos em horario de rodizio!');
 
       } else {
@@ -139,7 +139,7 @@ $(function(){
               s = ('0' + Math.abs(rodTime.getSeconds() - now.getSeconds())).slice(-2),
               timeDiff = h + ':' + m + ':' + s;
 
-              $('.alerta .alert').removeClass("alert-danger-alt").addClass("alert-success-alt");
+              $('.alerta .alert').addClass("alert-success-alt");
               $('.alerta .contador').text('O proximo rodizio começa em: ' + timeDiff);
         }, 1000);
 
