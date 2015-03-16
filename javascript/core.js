@@ -2,6 +2,7 @@ $(function(){
 
   function Rodizio(){
     var self = this;
+    this.locationGeo = google.maps.geometry.poly;
     this.mapCanvas = document.getElementById('map_canvas');
     this.mapOptions = {
       zoom: 12,
@@ -163,8 +164,9 @@ $(function(){
 
     function myPosition(position){
       self.geoLoc = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-
       addMarker(self.geoLoc);
+
+      contains(self.geoLoc);
     };
 
     function handleNoGeolocation(errorFlag) {
@@ -202,9 +204,12 @@ $(function(){
       self.map.panTo(geoLocation);
     };
 
-    function contains(geoLocation, rodizioArea){
-      console.log(google.maps.geometry.poly.containsLocation(geoLocation, rodizioArea));
-      if (google.maps.geometry.poly.containsLocation(geoLocation, rodizioArea)) {
+    function contains(myLocation){
+      var rodizioArea = new google.maps.Polygon({
+        paths: self.rodizioCoords
+      })
+
+      if(self.locationGeo.containsLocation(myLocation, rodizioArea)) {
         console.log('dentro');
       } else {
         console.log('fora');
