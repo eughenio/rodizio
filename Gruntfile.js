@@ -42,8 +42,10 @@ module.exports = function(grunt) {
     },
     copy: {
       main: {
-        src: 'bower_components/jquery/dist/jquery.min.map',
-        dest: 'app/javascript/jquery.min.map',
+        files: [
+          {src: 'bower_components/jquery/dist/jquery.min.map', dest: 'app/javascript/jquery.min.map'},
+          {cwd: 'bower_components/bootstrap/fonts/', src: ['*'], dest: 'app/fonts/', filter: 'isFile'}
+        ],
       },
     },
     htmlmin: {
