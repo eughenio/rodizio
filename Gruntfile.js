@@ -19,7 +19,7 @@ module.exports = function(grunt) {
     uglify: {
       core: {
         files: {
-          'app/javascript/mapga.min.js': ['javascript/core.js', 'javascript/ga.js']
+          'htdocs/javascript/mapga.min.js': ['javascript/core.js', 'javascript/ga.js']
         }
       }
     },
@@ -30,21 +30,21 @@ module.exports = function(grunt) {
           "bower_components/bootstrap/dist/css/bootstrap-theme.min.css",
           "css/master.min.css"
         ],
-        dest: "app/styles/styles.css"
+        dest: "htdocs/styles/styles.css"
       },
       js: {
         src: [
           "bower_components/jquery/dist/jquery.min.js",
           "bower_components/bootstrap/dist/js/bootstrap.min.js"
         ],
-        dest: "app/javascript/javascript.js"
+        dest: "htdocs/javascript/javascript.js"
       }
     },
     copy: {
       main: {
         files: [
-          {src: 'bower_components/jquery/dist/jquery.min.map', dest: 'app/javascript/jquery.min.map'},
-          {cwd: 'bower_components/bootstrap/fonts/', src: ['*'], dest: 'app/fonts/', filter: 'isFile'}
+          {src: 'bower_components/jquery/dist/jquery.min.map', dest: 'htdocs/javascript/jquery.min.map'},
+          {cwd: 'bower_components/bootstrap/fonts/', src: ['*'], dest: 'htdocs/fonts/', filter: 'isFile'}
         ],
       },
     },
