@@ -1,23 +1,25 @@
-## Laravel PHP Framework
+# Rodizio
+It's a tool to help you to know if you are inside the Rodízio area in São Paulo - Brazil.
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+## How it works
+Rodizio is a traffic restriction program made by the city hall to reduce the traffic in São paulo - Brazil
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+Over the map is shown the Rodizio area.
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Depending the final number of your car plate, you can't drive between 7AM and 10AM and between 17PM and 20PM in the weekdays:
 
-## Official Documentation
+- 1 or 2 = Monday
+- 3 or 4 = Tuesday
+- 5 or 6 = Wednesday
+- 7 or 8 = Thursday
+- 9 or 10 = Friday
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+On Weekends there's no Rodizio.
 
-## Contributing
+Very special thanks to JetBrains, https://www.jetbrains.com/phpstorm/, they gave to me a PHPStorm license, so, each improvement of this project is because they turned my work easiest with this amazing tool.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+![PHPStorm](https://www.jetbrains.com/phpstorm/documentation/docs/banners/ps8.png)
 
-### License
+Special thanks to Alexandre Fugita, http://meiobit.com/10720/google-maps-personalizado/, by the KMZ that he did.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+If you have some issue, feel free, https://waffle.io/eughenio/rodizio.
