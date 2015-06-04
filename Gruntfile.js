@@ -12,14 +12,14 @@ module.exports = function(grunt) {
       },
       target: {
         files: {
-          'css/master.min.css': ['css/master.css']
+          'resources/assets/css/master.min.css': ['resources/assets/css/master.css']
         }
       }
     },
     uglify: {
       core: {
         files: {
-          'htdocs/javascript/mapga.min.js': ['javascript/core.js', 'javascript/ga.js']
+          'public/javascript/mapga.min.js': ['resources/assets/javascript/core.js', 'resources/assets/javascript/ga.js']
         }
       }
     },
@@ -28,52 +28,36 @@ module.exports = function(grunt) {
         src: [
           "bower_components/bootstrap/dist/css/bootstrap.min.css",
           "bower_components/bootstrap/dist/css/bootstrap-theme.min.css",
-          "css/master.min.css"
+          "resources/assets/css/master.min.css"
         ],
-        dest: "htdocs/styles/styles.css"
+        dest: "public/styles/styles.css"
       },
       js: {
         src: [
           "bower_components/jquery/dist/jquery.min.js",
           "bower_components/bootstrap/dist/js/bootstrap.min.js"
         ],
-        dest: "htdocs/javascript/javascript.js"
+        dest: "public/javascript/javascript.js"
       }
     },
     copy: {
       main: {
         files: [
-          {src: 'bower_components/jquery/dist/jquery.min.map', dest: 'htdocs/javascript/jquery.min.map'},
-          {cwd: 'bower_components/bootstrap/fonts/', src: ['*'], dest: 'htdocs/fonts/', filter: 'isFile'}
+          {src: 'bower_components/jquery/dist/jquery.min.map', dest: 'public/javascript/jquery.min.map'}
         ],
       },
     },
-    htmlmin: {
-      dist: {
-        options: {
-          removeComments: true,
-          collapseWhitespace: true
-        },
-        files: {
-          'app/index.html': 'index.html',
-        }
-      }
-    },
     watch: {
       css: {
-        files: ['css/master.css'],
+        files: ['resources/assets/css/master.css'],
         tasks: ['concatmincss']
       },
       scripts: {
-        files: ['javascript/**/*.js'],
+        files: ['resources/assets/javascript/**/*.js'],
         tasks: ['concatjs', 'uglify'],
         options: {
           spawn: false,
         }
-      },
-      html: {
-        files: ['index.html'],
-        tasks: ['htmlmin']
       }
     }
   });
@@ -83,12 +67,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
   grunt.registerTask('mincss', ["cssmin"]);
   grunt.registerTask('concatcss', ["concat:css"]);
   grunt.registerTask('concatjs', ["concat:js", "uglify", "copy"]);
   grunt.registerTask('concatmincss', ["cssmin", "concat:css"]);
   grunt.registerTask('uglifycore', ["uglify"]);
-  grunt.registerTask('default', ["cssmin", "concat", "uglify", "copy", "htmlmin", "watch"]);
+  grunt.registerTask('default', ["cssmin", "concat", "uglify", "copy", "watch"]);
 };
