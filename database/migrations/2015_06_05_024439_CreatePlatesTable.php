@@ -14,12 +14,12 @@ class CreatePlatesTable extends Migration {
 	{
         Schema::create('plates', function(Blueprint $table)
         {
-            $table->increments('id_plate')->index();
+            $table->increments('id')->index();
             $table->integer('end');
             $table->integer('fk_user')->unsigned();
             $table->boolean('receive_email');
             $table->timestamps();
-            $table->foreign('fk_user')->references('id_user')->on('users');
+            $table->foreign('fk_user')->references('id')->on('users');
         });
 	}
 

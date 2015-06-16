@@ -86,7 +86,6 @@ $(function(){
     this.corRodizioOn = "#FF0000";
     this.corRodizioOff = "#66CC00";
     this.estaAqui = 'Você está aqui!';
-    this.geoLoc;
 
     this.fixCss = fixCss;
     this.corArea = corArea;
