@@ -1,7 +1,4 @@
-.DS_Store
-.idea
-.vagrant
+/vendor
+/node_modules
 .env
-log/
-node_modules/
-bower_components/
+/bower_components
