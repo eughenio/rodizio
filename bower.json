@@ -1,0 +1,22 @@
+{
+  "name": "rodizio",
+  "version": "0.0.0",
+  "homepage": "https://github.com/eughenio/rodizio",
+  "main": "public/index.php",
+  "authors": [
+    "eughenio"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5",
+    "polymer": "Polymer/polymer#^1.0.0"
+  }
+}
